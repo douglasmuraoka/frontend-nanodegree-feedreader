@@ -98,6 +98,20 @@ $(function() {
         });
     });
 
+    /* Checks if application is not broken, even if the user invokes our methods with wrong arguments */
+    describe('Error Handling', function() {
+        beforeEach(function(done) {
+            loadFeed(-999, function() { // try to load some undefined feed
+                done();
+            });
+        });
+
+        it('should not result in error due to undefined variable', function(done) {
+            expect($('.header-title').text()).toBe(allFeeds[0].name); // checks if the title has not changed (ignored my loadFeed call)
+            done();
+        });
+    });
+
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded

@@ -43,6 +43,13 @@ function init() {
  function loadFeed(id, cb) {
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
+    if (allFeeds[id] === undefined) {
+        // If feed is undefined, just invoke the callback and do nothing else
+        cb();
+        return;
+    }
+    var feedUrl = allFeeds[id].url,
+        feedName = allFeeds[id].name;
 
      $.ajax({
        type: "POST",
