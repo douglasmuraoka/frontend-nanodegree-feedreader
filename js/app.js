@@ -43,7 +43,9 @@ function init() {
 function loadFeed(id, cb) {
     if (allFeeds[id] === undefined) {
         // If feed is undefined, just invoke the callback and do nothing else
-        cb();
+        if (cb) {
+            cb();
+        }
         return;
     }
     var feedUrl = allFeeds[id].url,
